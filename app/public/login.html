@@ -134,6 +134,11 @@
 											</div>
 
 											<div class="col_full">
+												<label for="register-email">Email:</label>
+												<input type="text" id="register-email" name="registeremail" value="" class="form-control" required />
+											</div>
+
+											<div class="col_full">
 												<label for="register-city">City:</label>
 												<input type="text" id="register-city" name="registercity" value="" class="form-control" required />
 											</div>
@@ -199,14 +204,28 @@
 												<label for="register-inst">Instrument:</label>
 												<select name="registerinst" id="register-inst"  class="form-control" required>
 													<option value="">-- Instrument --</option>
-													<option value="guitar">Guitar</option>
-													<option value="bass">Bass</option>
-													<option value="drums">Drums</option>
-													<option value="percussion">Percussion</option>
-													<option value="keyboards">Keyboards</option>
-													<option value="vocals">Vocals</option>
-													<option value="brass">Brass</option>
-													<option value="woodwind">Woodwind</option>
+													<option value="Guitar">Guitar</option>
+													<option value="Bass">Bass</option>
+													<option value="Drums">Drums</option>
+													<option value="Percussion">Percussion</option>
+													<option value="Keyboards">Keyboards</option>
+													<option value="Vocals">Vocals</option>
+													<option value="Brass">Brass</option>
+													<option value="Woodwind">Woodwind</option>
+												</select>
+											</div>
+
+											<div class="col_full">
+												<label for="register-genre">Genre:</label>
+												<select name="registergenre" id="register-genre"  class="form-control" required>
+													<option value="">-- Genre --</option>
+													<option value="Rock">Rock</option>
+													<option value="Pop">Pop</option>
+													<option value="Blues">Blues</option>
+													<option value="randb">R &amp; B</option>
+													<option value="Punk">Punk</option>
+													<option value="Metal">Metal</option>
+													<option value="Classical">Classical</option>
 												</select>
 											</div>
 
@@ -216,7 +235,7 @@
 													<option value="">-- Skill Level --</option>
 													<option value="beginner">Beginner</option>
 													<option value="intermediate">Intermediate</option>
-													<option value="expert">expert</option>
+													<option value="expert">Expert</option>
 												</select>
 											</div>
 
@@ -230,10 +249,10 @@
 												<textarea id="register-about" name="registerabout" value="" class="form-control" rows="3" required></textarea>
 											</div>
 
-											<div class="col_full">
+											<!-- <div class="col_full">
 												<label for="register-info">Additional Info:</label>
 												<textarea id="register-info" name="registerinfo" value="" class="form-control" rows="3"></textarea>
-											</div>
+											</div> -->
 
 											<div class="col_full">
 												<label for="register-youtube">YouTube ("Share" link): </label>
