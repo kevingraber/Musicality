@@ -23,11 +23,6 @@ module.exports = function(app){
 		res.sendFile(path.join(__dirname+'/../public/login.html'));
 	});
 
-	app.post('/create', 
-	function(req, res){
-		console.log('post request recieved')
-	});
-
 	app.post('/login', 
 	passport.authenticate('local', { failureRedirect: '/login' }),
  	function(req, res) {
@@ -35,7 +30,7 @@ module.exports = function(app){
   	});
 
 	app.get('/content',
-	ensureLoggedIn(), 
+	ensureLoggedIn(),
 	function(req, res){
 		res.sendFile(path.join(__dirname+'/../public/content.html'));
 	});
