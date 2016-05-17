@@ -78,13 +78,21 @@ $('.filter-button-group').on( 'click', 'button', function() {
 });
 //submit button
 $('#searchnow').on('click', function(){
+
+	myUsers2 = [];
+
 //send selection
 console.log($('#search-inst').val());
 console.log($('#search-inst2').val());
 console.log($('#search-city').val());
 console.log($('#search-genre').val());
-// var originURL = document.location.origin; 
-var queryURL = '/api';
+// var originURL = document.location.origin;
+var queryURL = '/api?';
+
+if ( $('#search-inst').val() != null ) {
+	queryURL += 'instrument=' + $('#search-inst').val();
+}
+
 $.ajax({url: originURL + queryURL, method: 'GET'}).done(function(data){
 		console.log(data)
 		console.log(document.cookie)
