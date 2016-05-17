@@ -6,14 +6,15 @@
 // =============================================================
 var express 	= require('express');
 var bodyParser 	= require('body-parser');
-
 var mysql = require('mysql');
 var morgan = require('morgan');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./app/model/user.js');
 
-// ========== PASSPORT STUFF ================
+// Passport
+// =============================================================
+// Configuring the passport strategy. We are using a local strategy because we have our own database of usernames/passwords.
 passport.use(new LocalStrategy(
   	function(username, password, done) {
     	User.findOne({ 
@@ -32,10 +33,12 @@ passport.use(new LocalStrategy(
   	}
 ));
 
+// Attaches the id of the user to our session.
 passport.serializeUser(function(user, done) {
   	done(null, user.id);
 });
 
+// Retrieves the user information from the database and attaches it to the request object as req.user.
 passport.deserializeUser(function(id, done) {
   	User.findOne({
   		where: {
@@ -55,16 +58,16 @@ passport.deserializeUser(function(id, done) {
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// Use morgan to log requests to the console
+// Use morgan to log requests to the console.
 app.use(morgan('dev'));
 
-// Sets up the Express app to handle data parsing 
+// Sets up the Express app to handle data parsing.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
-// app.use(express.static('public'));
 
+// Allows the serving of static content such as CSS.
 app.use(express.static(__dirname + '/app/public'));
 
 
@@ -77,14 +80,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 // Routes
 // =============================================================
-
 require("./app/routes/api-routes.js")(app)
 require("./app/routes/html-routes.js")(app)
-
-
 
 
 // Starts the server to begin listening 
