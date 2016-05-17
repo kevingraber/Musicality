@@ -4,7 +4,7 @@
 
 // Dependencies
 // =============================================================
-var User 	= require("../model/user.js"); // Pulls out the Character Model
+var User = require("../model/user.js"); // Pulls out the User Model
 
 // Routes
 // =============================================================
@@ -17,48 +17,25 @@ module.exports = function(app){
 		
 	});
 
-	// // Search for Specific Character (or all characters) then provides JSON
-	// app.get('/api/:characters?', function(req, res){
+	app.post('/create', 
+	function(req, res){
+		console.log('post request recieved')
+	});
 
-	// 	console.log(req.query)
-	// 	console.log(req.query.length)
-
-	// 	// If the user provides a specific character in the URL...
-	// 	if(req.params.characters){
-
-	// 		// Then display the JSON for ONLY that character.
-	// 		// (Note how we're using the ORM here to run our searches)
-	// 		Character.findAll({
-	// 			where: {
-	// 				routeName: req.params.characters
-	// 			}
-	// 		}).then(function(result){
-	// 			res.json(result);
-	// 		})
-	// 	}
-
-	// 	// Otherwise...
-	// 	else{
-	// 		// Otherwise display the data for all of the characters. 
-	// 		// (Note how we're using Sequelize here to run our searches)
-	// 			Character.findAll({})
-	// 				.then(function(result){
-	// 					res.json(result);
-	// 			})
-	// 		};
-
-	// });
-
-	// Search for Specific Character (or all characters) then provides JSON
+	// Will return a JSON based on the URL that the path is targeting.
 	app.get('/api/', function(req, res){
 
+		console.log('===== req.query =====')
 		console.log(req.query)
+		console.log('=====================')
 
-		// If the user provides a specific character in the URL...
-		if(req.query){
+		// If the URL has parameters...
+		if( Object.keys(req.query).length != 0 ){
 
+			// We are building an object of search parameters which will be used by sequelize as search criteria for users. 
 			var searchParameters = {}
 
+			// If the URL has an instrument parameter add that to the search criteria, etc...
 			if (req.query.instrument) {
 				searchParameters.instrument = req.query.instrument
 			}
@@ -67,58 +44,49 @@ module.exports = function(app){
 				searchParameters.genre = req.query.genre
 			}
 
-			if (req.query.skill) {
-				searchParameters.skill = req.query.skill
+			if (req.query.skilllevel) {
+				searchParameters.skilllevel = req.query.skilllevel
 			}
 
-			if (req.query.genre) {
-				searchParameters.genre = req.query.genre
+			if (req.query.city) {
+				searchParameters.city = req.query.city
 			}
+
 			if (req.query.zipcode) {
 				searchParameters.zipcode = req.query.zipcode
 			}
 
-			// Then display the JSON for ONLY that character.
-			// (Note how we're using the ORM here to run our searches)
-			// Character.findAll({
-			// 	where: {
-			// 		role: req.query.role
-			// 	}
-			// }).then(function(result){
-			// 	res.json(result);
-			// })
+			console.log('===== search parameters =====')
+			console.log(searchParameters)
+			console.log('=============================')
 
+			// Return all users that meet the search criteria, minus some bits of sensitive information. 
 			User.findAll({
-				where: searchParameters
+				where: searchParameters,
+				attributes: { exclude: ['username', 'password', 'email'] }
 			}).then(function(result){
 				res.json(result);
 			})
 		}
 
-		// Otherwise...
-		else{
-			// Otherwise display the data for all of the characters. 
-			// (Note how we're using Sequelize here to run our searches)
-				User.findAll({})
+		// If no search parameters are entered, return all users (minus sensitive information).
+		else {
+				User.findAll({
+					attributes: { exclude: ['username', 'password', 'email'] }
+				})
 					.then(function(result){
 						res.json(result);
 				})
 			};
-
 	});
 
-	// If a user sends data to add a new character...
+	// This is the path that will create a new user. 
 	app.post('/api/create', function(req, res){
 
-		// Take the request...
-		// var character = req.body;
-
-		// Create a routeName 
-		// var routeName = character.name.replace(/\s+/g, '').toLowerCase();
 		console.log(req.body)
 		console.log(req.body.registername)
 
-		// Then add the character to the database using sequelize
+		// Adds the user to the database. 
 		User.create({
 			name: req.body.registername,
 			username: req.body.registerusername,
@@ -135,7 +103,8 @@ module.exports = function(app){
 			about: req.body.registerabout
 		});
 		
-		res.redirect('/');
+		// Redirects them to the login page so that they can login!
+		res.redirect('/login');
 
 	})
 }
