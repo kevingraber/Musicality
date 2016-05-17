@@ -158,7 +158,7 @@
 										<option value="rock">Rock</option>
 										<option value="pop">Pop</option>
 										<option value="blues">Blues</option>
-										<option value="randb">R and B</option>
+										<option value="randb">R &amp; B</option>
 										<option value="punk">Punk</option>
 										<option value="metal">Metal</option>
 										<option value="classical">Classical</option>
@@ -245,40 +245,73 @@
 										<img id="modalPhoto" src="images/placeholder_150x150.png">
 									</div>
 									
-									<div class="xs-col-10">	
+									<div class="col-xs-10">	
 										<div class="fancy-title">
 											<h4>Instrument: <span id="modalInst"></span></h4>
-											<span> </span><span> </span>
+											<br>
 											<h4>City: <span id="modalCity"></span></h4>
-											<span> </span><span> </span>
+											<br>
 											<h4>Genre: <span id="modalGenre"></span></h4>
-											<span> </span><span> </span>
+											<br>
 											<h4>Skill level: <span id="modalLevel"></span></h4>
 											<br>
 											<h4>About Me: <span id="modalAbout"></span></h4>
-											<br>
-											<h4>Additional Info: <span id="modalInfo"></span></h4>
 										</div>
-				
-										
+										</div>
+										<div class="clearfix"></div>
 										
 										<div class="center">
 											<iframe width="560" height="315" id="modalFrame" src="https://www.youtube.com/embed/CL9XLzzXZoA" frameborder="0" allowfullscreen></iframe>
 										</div>
-										</div>
+										
 										<div class="clearfix"></div>
+										<br>
 										<div class="button-group center">
   											<button id="modalPass" class="button button-3d button-rounded button-red"><i class="icon-remove"></i>Pass</button>
   											<button id="modalEmail" class="button button-3d button-rounded button-teal"><i class="icon-envelope"></i> Email</button>
   										</div>
+  										<br>
 									</div>
 								</div>
 							</div>
 						</div>
-</div>
+					</div>
 
 
+<!-- Modal Email -->
+<div class="modal fade bs-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-body">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h2 class="modal-title center" id="myModalLabel">Send a Message</h2>
+										</div>
 
+									<div class="modal-body">
+									<form id="emailForm" name="emailForm" class="nobottommargin" action="" method="">
+											<div class="col_full">
+												<label for="emailSubject">Subject:</label>
+												<input type="text" id="emailSubject" name="emailSubject" value="" class="form-control" />
+											</div>
+
+											<div class="col_full">
+												<label for="emailMessage">Message:</label>
+												<textarea id="emailMessage" name="emailMessage" value="" class="form-control" rows="5"></textarea>
+											</div>
+
+											<div class="col_full nobottommargin center">
+												<button id="emailButton" class="button button-3d button-rounded button-blue"><i class="icon-envelope"></i> Email</button>
+											</div>
+
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+<!-- End Modal Email -->
 
 
 

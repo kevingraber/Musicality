@@ -161,13 +161,36 @@ $('#myModal').on( 'click', '#modalPass', function() {
 $('#myModal').modal('hide');
 $('#modalFrame').attr('src', "");
 })
-//Close Modal - Email 
+///Popup Modal - Email 
 $('#myModal').on( 'click', '#modalEmail', function() {
+    $('#myModal').modal('hide');
+    $('#modalFrame').attr('src', "");
+    $('#myModal2').modal('show');
+})
+
+//Close Modal - Email 
+$('#myModal2').on( 'click', '#emailButton', function() {
+    $('#myModal2').modal('hide');
+    
+    var emailmsg = {
+        subject: $('#emailSubject').val().trim(),
+        message: $('#emailMessage').val().trim(),
+        email: (myUsers2[modalID].email)
+    };
+    console.log(emailmsg);
+    
+    //post to mail
+    $.post( currentURL + "/mail", emailmsg)
+                .done(function(data){
+                    //console.log(data);
+                    //alert("sending message...")
+                })
     $isogrid.isotope( 'remove', $('#' + modalID))
+    
     // layout remaining item elements
     .isotope('layout');
-$('#myModal').modal('hide');
-$('#modalFrame').attr('src', "");
+    
+    return false;
 })
   
 });
