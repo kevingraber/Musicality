@@ -89,8 +89,20 @@ console.log($('#search-genre').val());
 // var originURL = document.location.origin;
 var queryURL = '/api?';
 
-if ( $('#search-inst').val() != null ) {
+if ( $('#search-inst').val() != "" ) {
 	queryURL += 'instrument=' + $('#search-inst').val();
+}
+
+if ( $('#search-inst2').val() != "" ) {
+    queryURL += '&instrument=' + $('#search-inst2').val();
+}
+
+if ( $('#search-city').val() != "" ) {
+    queryURL += '&city=' + $('#search-city').val();
+}
+
+if ( $('#search-genre').val() != "" ) {
+    queryURL += '&genre=' + $('#search-genre').val();
 }
 
 $.ajax({url: originURL + queryURL, method: 'GET'}).done(function(data){
