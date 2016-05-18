@@ -13067,6 +13067,17 @@ body:not(.no-transition) #wrapper,
 	height: 100px;
 }
 
+.markerPop h1 {
+	color: #1693A5;
+	font-size: 18px;
+}
+
+.markerPop p {
+	color: #555;
+	font-size: 12px;
+	margin-top: -25px;
+}
+
 @media only screen and (max-width: 768px) {
 .portfolio-3 .portfolio-item {
 	width: 100%;
