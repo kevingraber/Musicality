@@ -161,6 +161,7 @@ $('.grid-container').on( 'click', '.grid-item', function() {
   $('#modalInst').text(myUsers2[modalID].instrument);
   $('#modalCity').text(myUsers2[modalID].city);
   $('#modalLevel').text(myUsers2[modalID].skilllevel);
+  $('#modalGenre').text(myUsers2[modalID].genre);
   $('#modalAbout').text(myUsers2[modalID].about);
   //$('#modalInfo').text(myUsers2[modalID].info);
   $('#modalPhoto').attr('src', myUsers2[modalID].photo);
@@ -371,6 +372,7 @@ function geocodeAddress(geocoder, resultsMap) {
                             id: myUsers2[counter].level,
 ///test                         
                             name: myUsers2[counter].name,
+                            genre: myUsers2[counter].genre,
                             inst: myUsers2[counter].instrument,
                             city: myUsers2[counter].city,
                             level: myUsers2[counter].silllevel,
@@ -418,6 +420,7 @@ function geocodeAddress(geocoder, resultsMap) {
               $('#modalCity').text(this.city);
               $('#modalLevel').text(this.level);
               $('#modalAbout').text(this.about);
+              $('#modalGenre').text(this.genre);
               $('#modalPhoto').attr('src', this.photo);
              $('#modalFrame').attr('src', fullURL);
                         });
@@ -461,6 +464,7 @@ function geocodeBeginner(geocoder, resultsMap) {
               id: beginnerMarkers[counter].level,
 ///test                         
                 name: beginnerMarkers[counter].name,
+                genre: beginnerMarkers[counter].genre,
                 inst: beginnerMarkers[counter].instrument,
                 city: beginnerMarkers[counter].city,
                 level: beginnerMarkers[counter].silllevel,
@@ -507,6 +511,7 @@ function geocodeBeginner(geocoder, resultsMap) {
               $('#modalCity').text(this.city);
               $('#modalLevel').text(this.level);
               $('#modalAbout').text(this.about);
+              $('#modalGenre').text(this.genre);
               $('#modalPhoto').attr('src', this.photo);
              $('#modalFrame').attr('src', fullURL);
                         });
@@ -553,6 +558,7 @@ function geocodeIntermediate(geocoder, resultsMap) {
               id: intermediateMarkers[counter].level,
 ///test                         
                 name: intermediateMarkers[counter].name,
+                genre: intermediateMarkers[counter].genre,
                 inst: intermediateMarkers[counter].instrument,
                 city: intermediateMarkers[counter].city,
                 level: intermediateMarkers[counter].silllevel,
@@ -598,6 +604,7 @@ function geocodeIntermediate(geocoder, resultsMap) {
               $('#modalCity').text(this.city);
               $('#modalLevel').text(this.level);
               $('#modalAbout').text(this.about);
+              $('#modalGenre').text(this.genre);
               $('#modalPhoto').attr('src', this.photo);
              $('#modalFrame').attr('src', fullURL);
                         });
@@ -639,6 +646,7 @@ function geocodeExpert(geocoder, resultsMap) {
               id: expertMarkers[counter].level,
 ///test                         
                 name: expertMarkers[counter].name,
+                genre: expertMarkers[counter].genre,
                 inst: expertMarkers[counter].instrument,
                 city: expertMarkers[counter].city,
                 level: expertMarkers[counter].silllevel,
@@ -684,6 +692,7 @@ function geocodeExpert(geocoder, resultsMap) {
               $('#modalCity').text(this.city);
               $('#modalLevel').text(this.level);
               $('#modalAbout').text(this.about);
+              $('#modalGenre').text(this.genre);
               $('#modalPhoto').attr('src', this.photo);
              $('#modalFrame').attr('src', fullURL);
                         });
@@ -717,6 +726,8 @@ function chooseArrays(){
 }
 
 chooseArrays();
+initMap();
+
 
 ////google maps buttons////
 $('#showallButton').on('click', function(){
