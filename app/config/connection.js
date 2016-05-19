@@ -4,6 +4,7 @@
 
 // Dependencies
 var Sequelize = require("sequelize");
+var passwords = require('./passwords.js')
 
 // Lists out connection options
 var source = {
@@ -12,17 +13,17 @@ var source = {
         port: 3306,
         host: 'localhost',
         user: 'root',
-        password: "ib4erule",
+        password: passwords.local,
         database: "musicality"
     },
 
-    // jawsDB: {
-    //     port: 3306,
-    //     host: 'l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    //     user: 'cm0zdmk2ez4igof5',
-    //     password: "yuhl98jsef0k7ul4",
-    //     database: "lghowl35ljxl5vao" 
-    // }
+    jawsDB: {
+        port: 3306,
+        host: 'g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'fut034mn7fon2a8g',
+        password: passwords.jawsDB,
+        database: "lghowl35ljxl5vao" 
+    }
 }
 
 // Selects a connection (can be changed quickly as needed)
