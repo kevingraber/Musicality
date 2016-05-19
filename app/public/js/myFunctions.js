@@ -716,13 +716,13 @@ function geocodeExpert(geocoder, resultsMap) {
 
 
 function chooseArrays(){
-    for (var i = 0; i < myUsers2.length; i++){
-        if (myUsers2[i].skilllevel == "beginner") {
-            beginnerMarkers.push(myUsers2[i]);
-        } else if (myUsers2[i].skilllevel == "intermediate") {
-            intermediateMarkers.push(myUsers2[i]);
+    for (var i = 0; i < allMarkers.length; i++){
+        if (allMarkers[i].skilllevel == "beginner") {
+            beginnerMarkers.push(allMarkers[i]);
+        } else if (allMarkers[i].skilllevel == "intermediate") {
+            intermediateMarkers.push(allMarkers[i]);
         } else {
-            expertMarkers.push(myUsers2[i]);
+            expertMarkers.push(allMarkers[i]);
         }
     }
 }
