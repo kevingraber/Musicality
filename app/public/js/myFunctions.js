@@ -300,7 +300,7 @@ var infowindow = new google.maps.InfoWindow({
  geocodeAddress(geocoder, map);
 }
 
-initMap();
+
 
 function initMap2() {
     var myLatLng = {lat: 40.488, lng: -74.439};
