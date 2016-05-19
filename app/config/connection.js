@@ -12,7 +12,7 @@ var source = {
     //     port: 3306,
     //     host: 'localhost',
     //     user: 'root',
-    //     password: passwords.local,
+    //     password: '',
     //     database: "musicality"
     // },
 

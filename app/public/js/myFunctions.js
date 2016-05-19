@@ -6,6 +6,8 @@ var myUsers2 = [];
 
 var cookieUser = {};
 
+var emailSelected = "";
+
 
 
 var originURL = document.location.origin; 
@@ -26,8 +28,7 @@ $.ajax({url: originURL + '/something', method: 'GET'}).done(function(response){
 // {
 // id: 2,
 // name: "Mike",
-// Instrument: "Guitar",
-// level: "beginner",
+// Instrument: "Guitar// level: "beginner",
 // youtube: "https://youtu.be/-ZTvqUvgYCI",
 // city: "Bound Brook"
 // },
@@ -168,6 +169,11 @@ $('.grid-container').on( 'click', '.grid-item', function() {
     var modalID = this.id;
     var url = $(this).data('youtube');
     var level = myUsers2[modalID].level;
+    var emailSelect = myUsers2[modalID].email;
+    emailSelected = emailSelect;
+    
+    console.log("EMAIL EMAIL EMAIL: " + emailSelect);
+
   $('#myModal').modal('show');
   $('#modalTitle').text(myUsers2[modalID].name);
   $('#modalInst').text(myUsers2[modalID].instrument);
@@ -197,28 +203,38 @@ $('#myModal').on( 'click', '#modalEmail', function() {
 
 //Close Modal - Email 
 $('#myModal2').on( 'click', '#emailButton', function() {
+
     $('#myModal2').modal('hide');
     
-    var emailmsg = {
-        subject: $('#emailSubject').val().trim(),
-        message: $('#emailMessage').val().trim(),
-        email: (myUsers2[modalID].email)
-    };
-    console.log(emailmsg);
+   
+    console.log("BRAND NEW EMAIL: " + emailSelected);
+
+    var contact = 
+      {
+        subject: $("#emailSubject").val().trim(),
+        mess: $("#emailMessage").val().trim(),
+        email: emailSelected    
+      };
+
+      var currentURL = window.location.origin;
+
+      $.post( currentURL + "/", contact)
+        .done(function(data){
+          console.log(data);
+          alert("Preparing to send")
+        })
+
+      $('#emailSubject').val("");
+      $('#emailMessage').val("");
+
+    // $isogrid.isotope( 'remove', $('#' + modalID))
     
-    //post to mail
-    $.post( currentURL + "/mail", emailmsg)
-                .done(function(data){
-                    //console.log(data);
-                    //alert("sending message...")
-                })
-    $isogrid.isotope( 'remove', $('#' + modalID))
-    
-    // layout remaining item elements
-    .isotope('layout');
+    // // layout remaining item elements
+    // .isotope('layout');
     
     return false;
-})
+
+    })
   
 });
 ///////////////login////////////////

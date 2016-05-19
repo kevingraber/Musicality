@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var User = require("../model/user.js"); // Pulls out the User Model
+var nodemailer = require('nodemailer');
 
 // Routes
 // =============================================================
@@ -63,7 +64,7 @@ module.exports = function(app){
 			// Return all users that meet the search criteria, minus some bits of sensitive information. 
 			User.findAll({
 				where: searchParameters,
-				attributes: { exclude: ['username', 'password', 'email'] }
+				attributes: { exclude: ['username', 'password'] }
 			}).then(function(result){
 				res.json(result);
 			})
@@ -72,7 +73,7 @@ module.exports = function(app){
 		// If no search parameters are entered, return all users (minus sensitive information).
 		else {
 				User.findAll({
-					attributes: { exclude: ['username', 'password', 'email'] }
+					attributes: { exclude: ['username', 'password'] }
 				})
 					.then(function(result){
 						res.json(result);
@@ -107,4 +108,27 @@ module.exports = function(app){
 		res.redirect('/login');
 
 	})
+
+		app.post('/', function (req, res) {
+	    var smtpTransport = nodemailer.createTransport('SMTP', {
+	      service: 'Gmail',
+	      auth: {
+	        user: 'appmusicality@gmail.com',
+	        pass: 'codingbootcamp'
+	      }
+	    });
+
+	    smtpTransport.sendMail({
+	       from: "Musicality <appmusicality@gmail.com>", // sender address
+	       to: req.body.email, // comma separated list of receivers
+	       subject: req.body.subject, // Subject line
+	       text: req.body.mess // plaintext body
+	    }, function(error, response){
+	       if(error){
+	           console.log(error);
+	       }else{
+	           console.log("Message sent: " + response.message);
+	       }
+	    });
+	});
 }
