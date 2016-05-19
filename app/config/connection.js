@@ -4,30 +4,29 @@
 
 // Dependencies
 var Sequelize = require("sequelize");
-var passwords = require('./passwords.js')
 
 // Lists out connection options
 var source = {
 
-    localhost: {
-        port: 3306,
-        host: 'localhost',
-        user: 'root',
-        password: passwords.local,
-        database: "musicality"
-    },
+    // localhost: {
+    //     port: 3306,
+    //     host: 'localhost',
+    //     user: 'root',
+    //     password: passwords.local,
+    //     database: "musicality"
+    // },
 
     jawsDB: {
         port: 3306,
         host: 'g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         user: 'fut034mn7fon2a8g',
-        password: passwords.jawsDB,
+        password: process.env.PASSWORD,
         database: "lghowl35ljxl5vao" 
     }
 }
 
 // Selects a connection (can be changed quickly as needed)
-var selectedSource = source.localhost;
+var selectedSource = source.jawsDB;
 
 // Creates mySQL connection using Sequelize
 var sequelize = new Sequelize(selectedSource.database, selectedSource.user, selectedSource.password, {
