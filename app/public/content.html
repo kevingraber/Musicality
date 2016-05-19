@@ -18,6 +18,8 @@
 
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 	<![endif]-->
@@ -184,6 +186,7 @@
 	<br>
 	<br>
 	<br>
+	<br>
 </section>
 
 
@@ -193,22 +196,32 @@
 <section id="people-search">
 		<div class="content-wrap">
 			<div class="container clearfix">
-				<div id="section-people" class="heading-block title-center page-section">
+				<a href="#" data-scrollto="#section-jam"><div id="section-people" class="heading-block title-center page-section">
 					<h2>Let's Jam!</h2>
 					<span>Find your next jam-mate now.</span>
-					
 				</div>
-				<div class="container clearfix">
+				</a>	
+				<div class="container clearfix" id="section-jam">
 <div class="button-group filter-button-group center">
-  <button data-filter="*" class="button button-3d button-rounded button-amber">Show ALL</button>
-  <button data-filter=".beginner" class="button button-3d button-rounded button-green">Beginner</button>
-  <button data-filter=".intermediate" class="button button-3d button-rounded button-dirtygreen">Intermediate</button>
-  <button data-filter=".expert" class="button button-3d button-rounded button-blue">Expert</button>
+  <button data-filter="*" class="button button-3d button-rounded button-amber" id="showallButton">Show ALL</button>
+  <button data-filter=".beginner" class="button button-3d button-rounded button-green" id="beginnerButton">Beginner</button>
+  <button data-filter=".intermediate" class="button button-3d button-rounded button-dirtygreen" id="intermediateButton">Intermediate</button>
+  <button data-filter=".expert" class="button button-3d button-rounded button-blue" id="expertButton">Expert</button>
  <div>
  <br>
 </div>
 			</div>
 
+<!-- Google Maps -->
+
+<div class="container clearfix"></div>
+
+<div id="google-map5" style="height: 300px; margin-bottom: 20px;" class="gmap"></div>
+
+<div class="container clearfix">
+
+
+<!--End Google Maps -->
 
 
 
@@ -236,7 +249,7 @@
 								<div class="modal-body">
 									<div class="modal-content">
 										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="modalX">&times;</button>
 											<h2 class="modal-title" id="myModalLabel"><span id="modalTitle"></span></h2>
 										</div>
 
@@ -367,7 +380,7 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
 	<script type="text/javascript" src="js/plugins.js"></script>
 
 	<!-- My Scripts
@@ -375,6 +388,13 @@
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/isotope.js"></script>
 	<script type="text/javascript" src="js/myFunctions.js"></script>
+
+
+	<!--Maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOo3mntkfMMomnO0V0P6Mt4bQ3vMUUWIw&callback=initMap"
+    async defer></script>
+	
+	
 
 	<script type="text/javascript">
 
