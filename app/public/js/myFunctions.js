@@ -81,6 +81,13 @@ $('#searchnow').on('click', function(){
 
 	myUsers2 = [];
 
+    allMarkers = [];
+    beginnerMarkers = [];
+    intermediateMarkers = [];
+    expertMarkers = [];
+
+
+
 //send selection
 console.log($('#search-inst').val());
 console.log($('#search-inst2').val());
@@ -131,7 +138,12 @@ $.ajax({url: originURL + queryURL, method: 'GET'}).done(function(data){
 	        $isogrid.isotope( 'insert', $newitems );
 	    }
 
+        initMap();
+        chooseArrays();
+
 });
+
+
 	
 //populate iso box
     // $(".grid-container").html("");
@@ -166,14 +178,7 @@ $('.grid-container').on( 'click', '.grid-item', function() {
   //$('#modalInfo').text(myUsers2[modalID].info);
   $('#modalPhoto').attr('src', myUsers2[modalID].photo);
   $('#modalFrame').attr('src', url);
- //Close Modal - Pass 
-$('#myModal').on( 'click', '#modalPass', function() {
-    // $isogrid.isotope( 'remove', $('#' + modalID))
-    // // layout remaining item elements
-    // .isotope('layout');
-$('#myModal').modal('hide');
-$('#modalFrame').attr('src', "");
-})
+ 
 ///close modal from X modalX
 $('#myModal').on( 'click', '#modalX', function() {
     // $isogrid.isotope( 'remove', $('#' + modalID))
@@ -377,14 +382,14 @@ function geocodeAddress(geocoder, resultsMap) {
                             genre: myUsers2[counter].genre,
                             inst: myUsers2[counter].instrument,
                             city: myUsers2[counter].city,
-                            level: myUsers2[counter].silllevel,
+                            level: myUsers2[counter].skilllevel,
                             about: myUsers2[counter].about,
                             youtube: myUsers2[counter].sample,
                             photo: myUsers2[counter].photo,
                             html: 
                                     '<div class="markerPop">' +
                                     '<h1>' + myUsers2[counter].name + '</h1>' + 
-                                    '<p>' + myUsers2[counter].Instrument + '</p>' +
+                                    '<p>' + myUsers2[counter].instrument + '</p>' +
                                     '</div>'
                         });
 
@@ -469,7 +474,7 @@ function geocodeBeginner(geocoder, resultsMap) {
                 genre: beginnerMarkers[counter].genre,
                 inst: beginnerMarkers[counter].instrument,
                 city: beginnerMarkers[counter].city,
-                level: beginnerMarkers[counter].silllevel,
+                level: beginnerMarkers[counter].skilllevel,
                 about: beginnerMarkers[counter].about,
                 youtube: beginnerMarkers[counter].sample,
                 photo: beginnerMarkers[counter].photo,
@@ -477,14 +482,14 @@ function geocodeBeginner(geocoder, resultsMap) {
               html: 
                   '<div class="markerPop">' +
                   '<h1>' + beginnerMarkers[counter].name + '</h1>' + 
-                  '<p>' + beginnerMarkers[counter].Instrument + '</p>' +
+                  '<p>' + beginnerMarkers[counter].instrument + '</p>' +
                   '</div>'
             });
 
     var contentString = '<div id="content">'+
                       '<h4 class="firstHeading">'+ beginnerMarkers[counter].name +'</h4>'+
                 '<div id="bodyContent">'+
-                '<p><b>'+beginnerMarkers[counter].Instrument+'</b></p>'+
+                '<p><b>'+beginnerMarkers[counter].instrument+'</b></p>'+
                 '</div>'+
                 '</div>';
 
@@ -545,7 +550,7 @@ function geocodeBeginner(geocoder, resultsMap) {
 function geocodeIntermediate(geocoder, resultsMap) {
   for (var j = 0; j < intermediateMarkers.length; j++){
      address = intermediateMarkers[j].zipcode;
-     inst = intermediateMarkers[j].Instrument;
+     inst = intermediateMarkers[j].instrument;
      name = intermediateMarkers[j].name;
       //console.log(intermediateMarkers[j].zipcode);
       geocoder.geocode({'address': address}, function(results, status) {
@@ -563,14 +568,14 @@ function geocodeIntermediate(geocoder, resultsMap) {
                 genre: intermediateMarkers[counter].genre,
                 inst: intermediateMarkers[counter].instrument,
                 city: intermediateMarkers[counter].city,
-                level: intermediateMarkers[counter].silllevel,
+                level: intermediateMarkers[counter].skilllevel,
                 about: intermediateMarkers[counter].about,
                 youtube: intermediateMarkers[counter].sample,
                 photo: intermediateMarkers[counter].photo,
               html: 
                   '<div class="markerPop">' +
                   '<h1>' + intermediateMarkers[counter].name + '</h1>' + 
-                  '<p>' + intermediateMarkers[counter].Instrument + '</p>' +
+                  '<p>' + intermediateMarkers[counter].instrument + '</p>' +
                   '</div>'
             });
 
@@ -633,7 +638,7 @@ function geocodeIntermediate(geocoder, resultsMap) {
 function geocodeExpert(geocoder, resultsMap) {
   for (var j = 0; j < expertMarkers.length; j++){
      address = expertMarkers[j].zipcode;
-     inst = expertMarkers[j].Instrument;
+     inst = expertMarkers[j].instrument;
      name = expertMarkers[j].name;
       //console.log(expertMarkers[j].zipcode);
       geocoder.geocode({'address': address}, function(results, status) {
@@ -651,14 +656,14 @@ function geocodeExpert(geocoder, resultsMap) {
                 genre: expertMarkers[counter].genre,
                 inst: expertMarkers[counter].instrument,
                 city: expertMarkers[counter].city,
-                level: expertMarkers[counter].silllevel,
+                level: expertMarkers[counter].skilllevel,
                 about: expertMarkers[counter].about,
                 youtube: expertMarkers[counter].sample,
                 photo: expertMarkers[counter].photo,
               html: 
                   '<div class="markerPop">' +
                   '<h1>' + expertMarkers[counter].name + '</h1>' + 
-                  '<p>' + expertMarkers[counter].Instrument + '</p>' +
+                  '<p>' + expertMarkers[counter].instrument + '</p>' +
                   '</div>'
             });
 
@@ -716,18 +721,18 @@ function geocodeExpert(geocoder, resultsMap) {
 
 
 function chooseArrays(){
-    for (var i = 0; i < allMarkers.length; i++){
-        if (allMarkers[i].skilllevel == "beginner") {
-            beginnerMarkers.push(allMarkers[i]);
-        } else if (allMarkers[i].skilllevel == "intermediate") {
-            intermediateMarkers.push(allMarkers[i]);
+    for (var i = 0; i < myUsers2.length; i++){
+        if (myUsers2[i].skilllevel == "beginner") {
+            beginnerMarkers.push(myUsers2[i]);
+        } else if (myUsers2[i].skilllevel == "intermediate") {
+            intermediateMarkers.push(myUsers2[i]);
         } else {
-            expertMarkers.push(allMarkers[i]);
+            expertMarkers.push(myUsers2[i]);
         }
     }
 }
 
-chooseArrays();
+// chooseArrays();
 
 
 
@@ -757,3 +762,28 @@ $('#expertButton').on('click', function(){
     //alert("expert");
 })
 ////google maps buttons end /////
+
+
+//Close Modal - Pass 
+$('#myModal').on( 'click', '#modalPass', function() {
+    // $isogrid.isotope( 'remove', $('#' + modalID))
+    // // layout remaining item elements
+    // .isotope('layout');
+    $('#myModal').modal('hide');
+    $('#modalFrame').attr('src', "");
+})
+
+// $('#myModal').on( 'hide', function() {
+//     $('#modalFrame').attr('src', "");
+// })
+// jQuery(".modal-backdrop, #myModal .close, #myModal .btn").live("click", function() {
+//         jQuery("#myModal iframe").attr("src", jQuery("#myModal iframe").attr("src"));
+// });
+
+$('#myModal').on('hidden.bs.modal', function () {
+   var src = $(this).find('iframe').attr('src');
+   $(this).find('iframe').attr('src', '');
+   $(this).find('iframe').attr('src', src);
+});
+
+initMap();
