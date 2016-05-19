@@ -21,7 +21,7 @@ var source = {
         host: 'g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         user: 'fut034mn7fon2a8g',
         password: process.env.PASSWORD,
-        database: "lghowl35ljxl5vao" 
+        database: "fbkbthhomumsgsfr" 
     }
 }
 
