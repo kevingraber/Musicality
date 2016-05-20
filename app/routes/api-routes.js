@@ -6,6 +6,7 @@
 // =============================================================
 var User = require("../model/user.js"); // Pulls out the User Model
 var nodemailer = require('nodemailer');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // Routes
 // =============================================================
