@@ -120,7 +120,7 @@ $.ajax({url: originURL + queryURL, method: 'GET'}).done(function(data){
         	myUsers2.push(data[i]);
         }
         console.log('==== myUswrs2 =====')
-        console.log(myUsers2)
+        // console.log(myUsers2)
 
         $(".grid-container").html("");
 	    for (var i = 0; i < myUsers2.length; i++){
@@ -172,7 +172,7 @@ $('.grid-container').on( 'click', '.grid-item', function() {
     var emailSelect = myUsers2[modalID].email;
     emailSelected = emailSelect;
     
-    console.log("EMAIL EMAIL EMAIL: " + emailSelect);
+    // console.log("EMAIL EMAIL EMAIL: " + emailSelect);
 
   $('#myModal').modal('show');
   $('#modalTitle').text(myUsers2[modalID].name);
