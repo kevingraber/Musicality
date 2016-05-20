@@ -24,7 +24,9 @@ module.exports = function(app){
 	});
 
 	// Will return a JSON based on the URL that the path is targeting.
-	app.get('/api/', function(req, res){
+	app.get('/api/', 
+		ensureLoggedIn(), 
+		function(req, res){
 
 		console.log('===== req.query =====')
 		console.log(req.query)
