@@ -95,7 +95,7 @@ module.exports = function(app){
 			email: req.body.registeremail,
 			city: req.body.registercity,
 			state: req.body.registerstate,
-			zipcode: req.body.registerzipcode,
+			zipcode: req.body.registerzip,
 			instrument: req.body.registerinst,
 			genre: req.body.registergenre,
 			skilllevel: req.body.registerskill,
